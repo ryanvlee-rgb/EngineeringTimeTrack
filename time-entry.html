@@ -345,7 +345,12 @@ let timesheetRows=[]; // [{project,job,category}]
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
 
 // Admin panel
-function openAdmin(){$('adminOverlay').classList.add('open');$('adminPanel').classList.add('open');renderEngineers();renderProjectCards();renderCategories();renderHolidays();populateDropdowns();renderLog()}
+const ADMIN_PIN='!R543edfgt';
+function openAdmin(){
+  const pin=prompt('Enter admin PIN:');
+  if(pin!==ADMIN_PIN)return;
+  $('adminOverlay').classList.add('open');$('adminPanel').classList.add('open');renderEngineers();renderProjectCards();renderCategories();renderHolidays();populateDropdowns();renderLog();
+}
 function closeAdmin(){$('adminOverlay').classList.remove('open');$('adminPanel').classList.remove('open');populateDropdowns();renderTimesheet()}
 
 // Date utils
